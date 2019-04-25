@@ -5,7 +5,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-	android:padding="16dp"    
+	android:padding="10dp"    
+    android:descendantFocusability="blocksDescendants"
+    
     >  
 
        <ListView
@@ -15,21 +17,25 @@
             android:dividerHeight="1dip" 
             android:layout_height="430dp"
             android:id="@+id/lista" 
-               
+            android:choiceMode="singleChoice"
+            android:listSelector="@drawable/lista"
+            android:longClickable="true"
+         
         />
        
 
          <Button
             android:id="@+id/btn_volver"
-            android:layout_width="320dp"
-            android:layout_height="50dp"
-            android:text="volver"
+            android:layout_width="340dp"
+
+            android:layout_height="80dp"
+            android:text="Volver"
             android:layout_marginTop="450dp"
-            android:layout_marginLeft="10.0dp"		
+            style="@android:style/Widget"	
 	        />
 
     
-         <!--Boton flotante para borrado de archivos-->
+         <!--Boton flotante para borrado de archivos
         <android.support.design.widget.FloatingActionButton
             android:id="@+id/fab"
             android:layout_width="wrap_content"
@@ -41,7 +47,7 @@
 		    app:srcCompat="@android:drawable/ic_menu_delete"		
 	    />
         
-	
+	-->
 
   
 </FrameLayout>
