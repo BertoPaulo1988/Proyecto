@@ -6,6 +6,7 @@ Info:
 Aplicación diseñada para capturar texto en tiempo real mediante el CameraSource (API de Google). 
 
 Funcionamiento:
+
 -El usuario enfoca a cualquier texto con la cámara trasera del teléfono e inmediatamente verá el texto que está recibiendo. Si quiere capturar ese texto solo tiene que pulsar el boton "Capturar texto" e inmediatamente de generará un documento de texto (.txt) con la información recogida.
 -Para acceder a esos documentos tendrá que pulsar sobre el botón "Datos guardados" y accederá a la lista de todos los documentos realizados. 
 -Si quiere abrir esos documentos tendrá que tocar sobre ellos y saldrá un menú donde seleccionará una app compatible para abrirlos (es necesario tener apps instaladas en el terminal compatibles con documentos.txt).
@@ -19,6 +20,8 @@ Hay que importar en el android SDK manager "Google play services" (En la opcion 
 hacemos clic derecho y agregamos "Xamarin.GooglePlayServices.Vision (V-60.1142.1)","Xamarin.Android.Support.v7.AppCompact (V-27.0.2)",
 "Xamarin.Android.Support.v4 (V-27.0.2)" y  "Xamarin.Forms (V-3.6.0.293080)" en paquetes NuGet.
 Es necesario que las versiones de "Xamarin.Android.Support.v7.AppCompact" y "Xamarin.Android.Support.v4" sean la (V-27.0.2) para no dar problemas con Xamarin.Forms.
+
+
 ----------------------------------------------------------------------------------------------------------------------------------------
 
 
