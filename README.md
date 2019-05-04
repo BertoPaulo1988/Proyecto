@@ -21,6 +21,7 @@ Funcionamiento:
 
 ----------------------------------------------------------------------------------------------------------------------------------------
 IMPORTANTE:
+
 -Paso 1: Actualizar por completo visual Studio 2019 (Si tiene actualización anterior a la 16.0.3 , se producen errores con la gestión de memoria en Android 8.0 y la aplicación se cierra la primera vez que se ejecuta).
 
 -Paso 2: Hay que importar en el android SDK manager "Google play services" (En la opcion extras). Luego, en Referencias del proyecto
