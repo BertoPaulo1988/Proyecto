@@ -33,31 +33,27 @@ namespace CameraScanner
     [Activity(Label = "@string/app_name", Theme = "@style/AppTheme.NoActionBar", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation, ScreenOrientation = ScreenOrientation.Portrait)]
     public class MainActivity : AppCompatActivity, ISurfaceHolderCallback, IProcessor
     //ISurfaceHolderCallback es utilizada para detectar cambios en la Surface. 
-    //IProcessor: Interfaz necesaria para el funcionamiento de la api de Google.
+    //IProcessor: Interfaz necesaria para el funcionamiento de la api de Google.    
     {
-
         //Declaracion de variables.
         private CameraSource cameraSource;
         private const int RequestCameraPermissionID = 1001;
         private SurfaceView cameraView;
-        //TextRecognizer encuentra texto dentro de un frame.
         private TextRecognizer textRecognizer;
         public TextView texto;
         private Button botonCaptura, botonDatos;
         private bool capturarTexto = false;
-
-        //Variable con la ruta para el archivo.
         public string ruta;
-        //Segundo Activity
-        Intent intent;
+        bool flag;
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
-
-
             //Establecer nuestra vista "main"
             base.OnCreate(savedInstanceState);
             SetContentView(Resource.Layout.activity_main);
+
+            //Bandera
+            flag = false;
 
             //SurfaceView
             cameraView = FindViewById<SurfaceView>(Resource.Id.surface_view);
@@ -68,6 +64,7 @@ namespace CameraScanner
             //Botones
             botonCaptura = FindViewById<Button>(Resource.Id.btn_CapturaTexto);
             botonDatos = FindViewById<Button>(Resource.Id.btn_datos);
+
             //Evento clic boton datos
             botonDatos.Click += DatosGuardados;
 
@@ -78,6 +75,16 @@ namespace CameraScanner
             CreacionDirectorioApp();
 
             //TextRecognizer
+            CrearTextRecognizer();
+
+            //Al producirse el evento Click del boton llama al metodo Capturar.
+            botonCaptura.Click += Capturar;
+        }
+
+
+
+        public void CrearTextRecognizer()
+        {
             textRecognizer = new TextRecognizer.Builder(ApplicationContext).Build();
             if (!textRecognizer.IsOperational)
                 Log.Error("Aviso:", "Detector no disponible!");
@@ -93,10 +100,8 @@ namespace CameraScanner
                 cameraView.Holder.AddCallback(this);//Recibe informacion del SurfaceView.                
                 textRecognizer.SetProcessor(this);//Estable Iprocessor para el textRecognizer.               
             }
-
-            //Al producirse el evento Click del boton llama al metodo Capturar.
-            botonCaptura.Click += Capturar;
         }
+
 
 
         //Metodo sobreescritura de los permisos de la camara.
@@ -109,7 +114,8 @@ namespace CameraScanner
 
                     if (grantResults[0] == Permission.Granted)
                     {
-                        cameraSource.Start(cameraView.Holder);
+                        CrearTextRecognizer();
+                        EncenderCamara();
                         CreacionDirectorioApp();
                     }
                     break;
@@ -140,20 +146,16 @@ namespace CameraScanner
         //Metodo de ISurfaceHolderCallback
         public void SurfaceCreated(ISurfaceHolder holder)
         {
-            //Comprueba permisos de acceso a la camara.
-            if (ActivityCompat.CheckSelfPermission(ApplicationContext, Manifest.Permission.Camera) == Permission.Granted)
-            {
-                //Si hay permisos de camara se inicia cameraSource
-                cameraSource.Start(cameraView.Holder);
-            }
-
+            CrearTextRecognizer();
+            EncenderCamara();
         }
+
         //Metodo de ISurfaceHolderCallback
         public void SurfaceDestroyed(ISurfaceHolder holder)
         {
-            //Parar cameraSource al cerrar la app o cambiar de activity.
-            cameraSource.Stop();
+            ApagarCamara();
         }
+
 
         //(Metodo de IProcessor) Metodo que recibe de la API de Google el texto detectado.
         public void ReceiveDetections(Detections detections)
@@ -202,6 +204,7 @@ namespace CameraScanner
                 using (var streamWriter = new StreamWriter(archivo, true))
                 {
                     streamWriter.WriteLine(caracteres);
+                    streamWriter.Close();
                 }
                 capturarTexto = false;
             }
@@ -263,7 +266,7 @@ namespace CameraScanner
             if (CreacionDirectorioApp())
             {
                 //Segundo Activity
-                intent = new Intent(this, typeof(Datos));
+                Intent intent = new Intent(this, typeof(Datos));
                 this.StartActivity(intent);
             }
             else
@@ -273,6 +276,39 @@ namespace CameraScanner
             }
 
         }
+
+        //Metodo para iniciar CameraSource
+        public void EncenderCamara()
+        {
+            if (!flag)
+            {
+                //Comprueba permisos de acceso a la camara.
+                if (ActivityCompat.CheckSelfPermission(ApplicationContext, Manifest.Permission.Camera) == Permission.Granted)
+                {
+                    //Toast.MakeText(this.ApplicationContext, "Enciendo Camara!", ToastLength.Short).Show();
+                    cameraSource.Start(cameraView.Holder);
+                    flag = true;
+                }
+            }
+        }
+
+        //Metodo para desactivar CameraSource
+        public void ApagarCamara()
+        {
+            if (flag)
+            {
+                if (cameraSource != null)
+                {
+                    //Toast.MakeText(this.ApplicationContext, "Apago Camara!", ToastLength.Short).Show();
+                    cameraSource.Stop();
+                    //cameraSource.Dispose();
+                    flag = false;
+                }
+
+            }
+
+        }
+
     }
 
 }

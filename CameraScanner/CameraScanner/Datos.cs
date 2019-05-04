@@ -14,8 +14,7 @@ using Android.Widget;
 using Java.IO;
 using Xamarin.Forms;
 using Android.Content.PM;
-
-
+using AlertDialog = Android.Support.V7.App.AlertDialog;
 
 namespace CameraScanner
 {
@@ -35,7 +34,7 @@ namespace CameraScanner
         //Array de tipo File con el contenido de la carpeta
         File[] archivos;
         ArrayAdapter<string> listaArchivos;
-
+        
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -52,8 +51,8 @@ namespace CameraScanner
             //Evento del boton volver
             volver.Click += Volver;
             //Boton flotante para borrado (No funcional/En pruebas)
-            //FloatingActionButton fab = FindViewById<FloatingActionButton>(Resource.Id.fab);
-            // fab.Click += Borrado;
+            FloatingActionButton fab = FindViewById<FloatingActionButton>(Resource.Id.fab);
+            fab.Click += PreguntaBorradoCompleto;
 
             //Ignora la URI de los archivos
             StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder();
@@ -62,7 +61,7 @@ namespace CameraScanner
             CrearListado();
             //Eventos del ListView       
             lista.ItemClick += AbrirArchivo;
-            lista.ItemLongClick += Borrado;
+            lista.ItemLongClick += PreguntaBorradoSimple;
 
         }
 
@@ -80,8 +79,6 @@ namespace CameraScanner
                     nombres.Add(archivo.Name);
                 }
             }
-
-
             //Localizamos y llenamos la lista con el array
             listaArchivos = new ArrayAdapter<string>(this, Android.Resource.Layout.SimpleListItem1, nombres);
             lista.Adapter = listaArchivos;
@@ -99,7 +96,7 @@ namespace CameraScanner
             intent.AddFlags(ActivityFlags.NewTask);
             intent.SetAction(Intent.ActionView);
             intent.SetDataAndType(uri, "text/plain");
-            Toast.MakeText(this, Android.Net.Uri.Parse("file:///" + archivo.Path).ToString(), ToastLength.Short).Show();
+            //Toast.MakeText(this, Android.Net.Uri.Parse("file:///" + archivo.Path).ToString(), ToastLength.Short).Show();
             try
             {
                 StartActivity(intent);
@@ -129,7 +126,6 @@ namespace CameraScanner
                     archivos[i].Delete();
                     Toast.MakeText(this, "Archivo " + nombres[i].ToString() + " borrado", ToastLength.Short).Show();
                     nombres.RemoveAt(i);
-                    listaArchivos.NotifyDataSetChanged();
 
                 }
             }
@@ -140,15 +136,62 @@ namespace CameraScanner
         //Metodo para refrescar la pantalla despues de un cambio en el listview
         private void Actualizar()
         {
-            Recreate();
+            //Dejo la comprobacion hecha para adaptarlo a Android 9 (utilizando "Recreate" en android 9 da un pequeño retardo la pantalla)
+            if ((int)Build.VERSION.SdkInt > 27)
+            {
+                Recreate();
+            }
+            else
+            {
+                Recreate();
+            }
+
         }
 
 
-        //Metodo para seleccionar elementos del listview (No disponible)
-        public void Marcar(object sender, EventArgs eventArgs)
+        //Metodo para confirmar el borrado del archivo seleccionado
+        public void PreguntaBorradoSimple(object sender, AdapterView.ItemLongClickEventArgs item)
         {
+            AlertDialog.Builder alert = new AlertDialog.Builder(this);
+            alert.SetTitle("Borrar?");
+            alert.SetMessage("Quieres borrar el elemento seleccionado?");
+            alert.SetPositiveButton("Borrar", (senderAlert, args) =>
+            {
+                Borrado(sender, item);
+            });
 
+            alert.SetNegativeButton("Cancelar", (senderAlert, args) =>
+            {
+                //Toast.MakeText(this, "Cancelado!", ToastLength.Short).Show();
+            });
 
+            Dialog dialogo = alert.Create();
+            dialogo.Show();
+        }
+
+        //Metodo para confirmar el borrado de todos los archivos
+        public void PreguntaBorradoCompleto(object sender, EventArgs eventArgs)
+        {
+            AlertDialog.Builder alert = new AlertDialog.Builder(this);
+            alert.SetTitle("Borrar?");
+            alert.SetMessage("Quieres borrar toda la lista?");
+            alert.SetPositiveButton("Borrar", (senderAlert, args) =>
+            {
+                for (int i = archivos.Length - 1; i >= 0; i--)
+                {
+                    archivos[i].Delete();
+                    nombres.RemoveAt(i);
+                }
+                Actualizar();
+                Toast.MakeText(this, "Lista borrada", ToastLength.Short).Show();
+            });
+            alert.SetNegativeButton("Cancelar", (senderAlert, args) =>
+            {
+                //Toast.MakeText(this, "Cancelado!", ToastLength.Short).Show();
+            });
+
+            Dialog dialogo = alert.Create();
+            dialogo.Show();
         }
 
     }
