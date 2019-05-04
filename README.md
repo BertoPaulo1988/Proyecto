@@ -8,49 +8,52 @@ Aplicación diseñada para capturar texto en tiempo real mediante el CameraSourc
 Funcionamiento:
 
 -El usuario enfoca a cualquier texto con la cámara trasera del teléfono e inmediatamente verá el texto que está recibiendo. Si quiere capturar ese texto solo tiene que pulsar el boton "Capturar texto" e inmediatamente de generará un documento de texto (.txt) con la información recogida.
+
 -Para acceder a esos documentos tendrá que pulsar sobre el botón "Datos guardados" y accederá a la lista de todos los documentos realizados. 
+
 -Si quiere abrir esos documentos tendrá que tocar sobre ellos y saldrá un menú donde seleccionará una app compatible para abrirlos (es necesario tener apps instaladas en el terminal compatibles con documentos.txt).
--Si quiere borrar algún documento de la lista solo tiene que hacer pulsación larga sobre el documento seleccionado y este se eliminará de la lista.
+
+-Si quiere borrar algún documento de la lista solo tiene que hacer pulsación larga sobre el documento seleccionado y este se eliminará de la lista (Se le preguntará al usuario si desea borrarlo).
+
+-Si quiere borrar toda la lista tiene que hacer click sobre el boton flotante con el simbolo de la papelera.(Se le preguntará al usuario si desea borrarla).
+
 -Para volver a la activity principal tiene que pulsar el boton volver.
 
 ----------------------------------------------------------------------------------------------------------------------------------------
 IMPORTANTE:
+-Paso 1: Actualizar por completo visual Studio 2019 (Si tiene actualización anterior a la 16.0.3 , se producen errores con la gestión de memoria en Android 8.0 y la aplicación se cierra la primera vez que se ejecuta).
 
-Hay que importar en el android SDK manager "Google play services" (En la opcion extras). Luego, en Referencias del proyecto
-hacemos clic derecho y agregamos "Xamarin.GooglePlayServices.Vision (V-60.1142.1)","Xamarin.Android.Support.v7.AppCompact (V-27.0.2)",
-"Xamarin.Android.Support.v4 (V-27.0.2)" y  "Xamarin.Forms (V-3.6.0.293080)" en paquetes NuGet.
-Es necesario que las versiones de "Xamarin.Android.Support.v7.AppCompact" y "Xamarin.Android.Support.v4" sean la (V-27.0.2) para no dar problemas con Xamarin.Forms.
+-Paso 2: Hay que importar en el android SDK manager "Google play services" (En la opcion extras). Luego, en Referencias del proyecto
+hacemos clic derecho y agregamos "Xamarin.GooglePlayServices.Vision (V-60.1142.1)","Xamarin.Android.Support.v7.AppCompact (V-28.0.0.1)",
+"Xamarin.Android.Support.v4 (V-28.0.0.1)" y  "Xamarin.Forms (V-3.6.0.344457)" en paquetes NuGet.
 
 
 ----------------------------------------------------------------------------------------------------------------------------------------
 
 
--En la primera versión crearemos la clase principal (Mainactivity), donde realizaremos el funcionamiento principal de la API de Google para la detección de imagenes y la gestión de permisos necesarios para el funcionamiento de la APP (acceso a la camara, permisos de lectura/escritura, etc).
+Primera versión: 
+-Creación la clase principal (Mainactivity), donde realizará el funcionamiento principal de la API de Google para la detección de imagenes y la gestión de permisos necesarios para el funcionamiento de la APP (acceso a la camara, permisos de lectura/escritura, etc).
 
--Hay que implementar en la calse las interfaces "ISurfaceHolderCallback e IProcessor" (necesarias para la API).Estas interfaces no funcinarán sin sus respectivos metodos.
+Segunda versión: 
+-Creación de una segunda clase (llamada datos), donde se gestionan los archivos guardados mediante un ListView, con la posibilidad abrirlos con una pulsacion corta o de borrarlos mediante una pulsación larga.
 
--El diseño de la APP (Botones, TexView, etc) se definen en el documento axml situado en la carpeta Resources/Layout.
+-Tercera versión (Final 1.0):
+-Se arreglan errores de funcionamiento
+-Implementación de boton flotante para borrado completo de la lista
+-Se agregan dialogos modales para preguntar al usuario si desea borrar los datos.
 
--La aplicación solo se podrá ejecutar en vertical.
-
--En la segunda versión de la APP crearemos una segunda clase (llamada datos), donde gestionaremos los archivos guardados mediante un ListView, con la posibilidad abrirlos con una pulsacion corta o de borrarlos mediante una pulsación larga.
-
--Para gestionar el diseño del segundo activity ("Datos") es necesario crear otro documento axml y asociarlo a la clase (accederemos a el desde la clase con  "SetContentView(Resource.Layout."aqui el nombre del archivo axml")".
-
--Para darle colores a los elementos de la lista hay que crear en resources la carpeta drawable y dentro un archivo .xml. Lo asociamos a la lista con el comando ( android:listSelector="@drawable/aqui nombre del archivo") en el archivo axml antes mencionado.
-
-
+-Cuarta versión (Final 1.2 "Si da tiempo"):
+-Cambiar icono de la aplicación.
+-Adaptar la aplicación a diferentes tipos de pantalla automaticamente.
 
 
 ----------------------------------------------------------------------------------------------------------------------------------------
 Ultimas actualizaciones:
 
-Laaplicación ya es funcional, dando solo un error la primera vez que se ejecuta en el terminal (una vez cerrada y vuelta a abrir ya es prefectamente funcional).
+*****La aplicación ya es completamente funcional.****
 
+El error producido en versiones anteriores ("F/libc (26772): Fatal signal 11 (SIGSEGV), code 1, fault addr 0xbc in tid 26872 (Thread-5)") que hacía que la app se cerrase la primera vez que se iniciaba, se arregla actualizando el Visual Studio a la ultima versión (Visual Studio 2019 versión 16.0.3).
 
-El error es :"F/libc    (26772): Fatal signal 11 (SIGSEGV), code 1, fault addr 0xbc in tid 26872 (Thread-5)". 
-
-Ocurre al pasar al segundo activity pulsando en el boton "Datos guardados".
 
 ----------------------------------------------------------------------------------------------------------------------------------------
 
