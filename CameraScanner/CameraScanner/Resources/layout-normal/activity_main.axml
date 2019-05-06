@@ -19,7 +19,7 @@
 	/>
     <TextView
         android:id="@+id/text_view"
-        android:text="Berto!"
+        android:text="CameraScanner"
         android:textColor="@android:color/black"
         android:background="@android:color/darker_gray"
         android:textSize="15sp"
