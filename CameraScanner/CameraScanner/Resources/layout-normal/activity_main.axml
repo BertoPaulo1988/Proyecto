@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--LAYOUT NORMAL-->
+
+<!--Cambiamos a FrameLayout-->
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"   
+    android:padding="10dp"      
+	>
+    <SurfaceView
+        android:id="@+id/surface_view"
+        android:layout_width="match_parent"
+        android:layout_height="350dp"
+        style="@android:style/Widget"		
+	/>
+    <TextView
+        android:id="@+id/text_view"
+        android:text="Berto!"
+        android:textColor="@android:color/black"
+        android:background="@android:color/darker_gray"
+        android:textSize="15sp"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="360dp"
+		android:layout_marginBottom="110dp"        
+	/>
+    <Button
+        android:id="@+id/btn_datos"
+        android:gravity="center"
+        style="@android:style/ButtonBar"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:text="Datos Guardados"		
+        android:layout_marginLeft="185dp"
+        android:layout_gravity="bottom"
+	 />
+    <Button
+        android:id="@+id/btn_CapturaTexto"
+        android:gravity="center"
+        style="@android:style/ButtonBar"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:text="Capturar Texto"
+        android:layout_marginRight="185dp"        
+        android:layout_gravity="bottom"       
+	/>
+</FrameLayout>
+		 

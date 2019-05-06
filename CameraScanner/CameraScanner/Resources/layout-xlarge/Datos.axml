@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+	<!--LAYOUT XLARGE-->
+
+  <FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"   
+    >  
+    <!--Boton flotante para borrado de archivos-->
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"		   
+		android:layout_gravity="top|right"		 
+		android:layout_margin="@dimen/fab_margin"
+		app:srcCompat="@android:drawable/ic_menu_delete"		
+	/>
+    <ListView
+        android:id="@+id/lista"
+        android:listSelector="@drawable/lista"
+        android:longClickable="true"
+        android:dividerHeight="1dip"
+        android:divider="#D3D3D3"
+        android:choiceMode="singleChoice"      
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="210dp"        
+     />       
+    <Button
+        android:id="@+id/btn_volver"
+        style="@android:style/Widget"
+        android:text="Volver"         
+        android:layout_width="match_parent"
+        android:layout_height="200dp"        
+        android:gravity="center"
+        android:layout_gravity="bottom"
+	/>   
+</FrameLayout>

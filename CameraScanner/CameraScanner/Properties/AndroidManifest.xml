@@ -8,11 +8,19 @@
   <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
   <!--*********************************************************************************-->
 
-  <!--Versiones de la app entre 5.0 Lollipop y  8.1 Oreo-->
+  <!--Versiones de la app entre 5.0 Lollipop y 8.1 Oreo-->
   <uses-sdk android:minSdkVersion="21" android:targetSdkVersion="27" />
   <!--*********************************************************************************-->
 
-
-  <application android:allowBackup="true" android:icon="@drawable/scanner2" android:label="@string/app_name" android:roundIcon="@mipmap/ic_launcher_round" android:supportsRtl="true" android:theme="@style/AppTheme">
+  <!--Tamaños de pantalla soportados-->
+  <supports-screens
+  android:resizeable="true"
+  android:smallScreens="true"
+  android:normalScreens="true"
+  android:largeScreens="true"
+  android:xlargeScreens="true"/>
+  <!--*********************************************************************************-->
+  
+  <application android:allowBackup="true" android:icon="@drawable/scanner" android:label="@string/app_name" android:roundIcon="@drawable/scanner_redondo" android:supportsRtl="true" android:theme="@style/AppTheme">
   </application>
 </manifest>
