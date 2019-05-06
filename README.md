@@ -38,14 +38,17 @@ Primera versión:
 Segunda versión: 
 -Creación de una segunda clase (llamada datos), donde se gestionan los archivos guardados mediante un ListView, con la posibilidad abrirlos con una pulsacion corta o de borrarlos mediante una pulsación larga.
 
--Tercera versión (Final 1.0):
--Se arreglan errores de funcionamiento
--Implementación de boton flotante para borrado completo de la lista
+Tercera versión:
+-Se arreglan errores de funcionamiento.
+-Implementación de boton flotante para borrado completo de la lista.
 -Se agregan dialogos modales para preguntar al usuario si desea borrar los datos.
 
--Cuarta versión (Final 1.2 "Si da tiempo"):
--Cambiar icono de la aplicación.
--Adaptar la aplicación a diferentes tipos de pantalla automaticamente.
+Cuarta versión (Final 1.0):
+-Se agregan diferentes iconos a la app (cuadrado y círculo), para adaptarse a los distintos temas de los terminales.
+-Adaptar la aplicación a los diferentes tipos de pantallas automaticamente (acepta tablets de hasta 10").
+
+Quinta versión (Final 2.0) (Si da tiempo):
+-Adaptar la aplicación para ser 100% compatible con android 9 Pie (Pequeños pantallazos al refrescar el ListView).
 
 
 ----------------------------------------------------------------------------------------------------------------------------------------
@@ -53,8 +56,9 @@ Ultimas actualizaciones:
 
 *****La aplicación ya es completamente funcional.****
 
-El error producido en versiones anteriores ("F/libc (26772): Fatal signal 11 (SIGSEGV), code 1, fault addr 0xbc in tid 26872 (Thread-5)") que hacía que la app se cerrase la primera vez que se iniciaba, se arregla actualizando el Visual Studio a la ultima versión (Visual Studio 2019 versión 16.0.3).
+-El error producido en versiones anteriores ("F/libc (26772): Fatal signal 11 (SIGSEGV), code 1, fault addr 0xbc in tid 26872 (Thread-5)") que hacía que la app se cerrase la primera vez que se iniciaba, se arregla actualizando el Visual Studio a la ultima versión (Visual Studio 2019 versión 16.0.3).
 
+-Probada en diferentes terminales (Motorola Nexus(Android 5.1), Samsung S5 Neo(Android 5.0), Samsung tb S2 (T710) 8" (Android 7), Xiaomi MI6 (Android 8.1) y Xiaomi MI A2 (Android 9)).
 
 ----------------------------------------------------------------------------------------------------------------------------------------
 
