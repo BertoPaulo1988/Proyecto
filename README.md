@@ -77,7 +77,7 @@ Ultimas actualizaciones:
 
 -El error producido en versiones anteriores ("F/libc (26772): Fatal signal 11 (SIGSEGV), code 1, fault addr 0xbc in tid 26872 (Thread-5)") que hacía que la app se cerrase la primera vez que se iniciaba, se arregla actualizando el Visual Studio a la ultima versión (Visual Studio 2019 versión 16.0.3).
 
--Probada en diferentes terminales (Motorola Nexus(Android 5.1), Samsung S5 Neo(Android 5.0), Samsung tb S2 (T710) 8" (Android 7), Xiaomi MI6 (Android 8.1) y Xiaomi MI A2 (Android 9)).
+-Probada en diferentes terminales (Motorola Nexus(Android 5.1), Samsung S5 Neo(Android 5.0), Samsung tb S2 (T710) 8" (Android 7), Xiaomi MI6 (Android 8.0) y Xiaomi MI A2 (Android 9)).
 
 ----------------------------------------------------------------------------------------------------------------------------------------
 
