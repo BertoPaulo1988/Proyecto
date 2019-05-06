@@ -44,6 +44,7 @@ Tercera versión:
 -Se agregan dialogos modales para preguntar al usuario si desea borrar los datos.
 
 Cuarta versión (Final 1.0):
+
 -Se agregan diferentes iconos a la app (cuadrado y círculo), para adaptarse a los distintos temas de los terminales.
 -Adaptar la aplicación a los diferentes tipos de pantallas automaticamente (acepta tablets de hasta 10").
 
