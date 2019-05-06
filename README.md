@@ -33,22 +33,30 @@ hacemos clic derecho y agregamos "Xamarin.GooglePlayServices.Vision (V-60.1142.1
 
 
 Primera versión: 
+
 -Creación la clase principal (Mainactivity), donde realizará el funcionamiento principal de la API de Google para la detección de imagenes y la gestión de permisos necesarios para el funcionamiento de la APP (acceso a la camara, permisos de lectura/escritura, etc).
 
+
 Segunda versión: 
+
 -Creación de una segunda clase (llamada datos), donde se gestionan los archivos guardados mediante un ListView, con la posibilidad abrirlos con una pulsacion corta o de borrarlos mediante una pulsación larga.
 
+
 Tercera versión:
+
 -Se arreglan errores de funcionamiento.
 -Implementación de boton flotante para borrado completo de la lista.
 -Se agregan dialogos modales para preguntar al usuario si desea borrar los datos.
+
 
 Cuarta versión (Final 1.0):
 
 -Se agregan diferentes iconos a la app (cuadrado y círculo), para adaptarse a los distintos temas de los terminales.
 -Adaptar la aplicación a los diferentes tipos de pantallas automaticamente (acepta tablets de hasta 10").
 
+
 Quinta versión (Final 2.0) (Si da tiempo):
+
 -Adaptar la aplicación para ser 100% compatible con android 9 Pie (Pequeños pantallazos al refrescar el ListView).
 
 
